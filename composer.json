@@ -1,0 +1,22 @@
+{
+    "name": "duncan3dc/tcpdf",
+    "type": "library",
+    "description": "A simple wrapper around tcpdf",
+    "keywords": ["tcpdf","pdf","simple"],
+    "homepage": "https://github.com/duncan3dc/tcpdf",
+    "license": "Apache-2.0",
+    "authors": [{
+        "name": "Craig Duncan",
+        "email": "git@duncanc.co.uk",
+        "homepage": "https://github.com/duncan3dc",
+        "role": "Developer"
+    }],
+    "require": {
+        "duncan3dc/helpers": "*",
+        "tecnick.com/tcpdf": "*",
+        "php": ">=5.4.0"
+    },
+    "autoload": {
+        "psr-4": {"duncan3dc\\": "src/"}
+    }
+}
