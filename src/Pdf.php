@@ -1,6 +1,6 @@
 <?php
 
-namespace duncan3dc;
+namespace duncan3dc\Tcpdf;
 
 use \duncan3dc\Helpers\Helper;
 
