@@ -1,8 +1,8 @@
 {
     "name": "duncan3dc/tcpdf",
     "type": "library",
-    "description": "A simple wrapper around tcpdf",
-    "keywords": ["tcpdf","pdf","simple"],
+    "description": "Wrappers around tcpdf and snappy",
+    "keywords": ["tcpdf","pdf","simple","snappy","wkhtmltopdf"],
     "homepage": "https://github.com/duncan3dc/tcpdf",
     "license": "Apache-2.0",
     "authors": [{
@@ -13,6 +13,9 @@
     }],
     "require": {
         "duncan3dc/helpers": ">=1.0.13",
+        "h4cc/wkhtmltopdf-amd64": "0.12.*",
+        "h4cc/wkhtmltopdf-i386": "0.12.*",
+        "knplabs/knp-snappy": "0.2.*",
         "tecnick.com/tcpdf": "*",
         "php": ">=5.4.0"
     },
