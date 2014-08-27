@@ -4,17 +4,17 @@ namespace duncan3dc\Tcpdf;
 
 use duncan3dc\Helpers\Helper;
 
-class Pdf extends \TCPDF {
-
+class Pdf extends \TCPDF
+{
     public  $headerFunction;
     public  $footerFunction;
 
     public  $defaultCellHeight;
 
 
-    public function __construct($options=false) {
-
-        $options = Helper::getOptions($options,[
+    public function __construct($options = null)
+    {
+        $options = Helper::getOptions($options, [
             "orientation"   =>  "P",
             "unit"          =>  "mm",
             "format"        =>  "A4",
@@ -27,7 +27,7 @@ class Pdf extends \TCPDF {
             "footer"        =>  false,
         ]);
 
-        parent::__construct($options["orientation"],$options["unit"],$options["format"],$options["unicode"],$options["encoding"],$options["diskcache"]);
+        parent::__construct($options["orientation"], $options["unit"], $options["format"], $options["unicode"], $options["encoding"], $options["diskcache"]);
 
         $this->setPrintHeader($options["header"]);
         $this->setPrintFooter($options["footer"]);
@@ -36,13 +36,13 @@ class Pdf extends \TCPDF {
         $this->SetAutoPageBreak($options["pagebreaks"]);
 
         # Set font
-        $this->SetFont("dejavusans","",10);
+        $this->SetFont("dejavusans", "", 10);
 
         # Set the default margin
-        $this->SetMargins(4,4);
+        $this->SetMargins(4, 4);
 
         # Add a page
-        if($options["addpage"]) {
+        if ($options["addpage"]) {
             $this->AddPage();
         }
 
@@ -50,13 +50,12 @@ class Pdf extends \TCPDF {
         $this->footerFunction = false;
 
         $this->defaultCellHeight = 0;
-
     }
 
 
-    public function addCell($options) {
-
-        $o = Helper::getOptions($options,[
+    public function addCell($options)
+    {
+        $o = Helper::getOptions($options, [
             "width"     =>  0,
             "height"    =>  $this->defaultCellHeight,
             "content"   =>  "",
@@ -70,83 +69,76 @@ class Pdf extends \TCPDF {
             "style"     =>  "",
         ]);
 
-        if($style = $o["style"]) {
+        if ($style = $o["style"]) {
             $current = $this->getFontStyle();
-            $this->SetFont("",$style);
+            $this->SetFont("", $style);
         }
 
-        $return = $this->Cell($o["width"],$o["height"],$o["content"],$o["border"],0,$o["align"],$o["fill"],$o["link"],$o["stretch"],false,$o["calign"],$o["valign"]);
+        $return = $this->Cell($o["width"], $o["height"], $o["content"], $o["border"], 0, $o["align"],
+                                $o["fill"], $o["link"], $o["stretch"], false, $o["calign"], $o["valign"]);
 
-        if($style) {
-            $this->SetFont("",$current);
+        if ($style) {
+            $this->SetFont("", $current);
         }
 
         return $return;
-
     }
 
 
-    public function moveX($move) {
-
+    public function moveX($move)
+    {
         $x = $this->getX();
 
         $x += $move;
 
         return $this->setX($x);
-
     }
 
 
-    public function moveY($move) {
-
+    public function moveY($move)
+    {
         $y = $this->getY();
 
         $y += $move;
 
         return $this->setY($y);
-
     }
 
 
-    public function bold($on=false) {
-
+    public function bold($on = null)
+    {
         $style = $this->getFontStyle();
 
-        $style = str_replace("B","",$style);
+        $style = str_replace("B", "", $style);
 
-        if($on) {
+        if ($on) {
             $style .= "B";
         }
 
-        return $this->setFont("",$style);
-
+        return $this->setFont("", $style);
     }
 
 
-    public function Header() {
-
-        if(!$func = $this->headerFunction) {
+    public function Header()
+    {
+        if (!$func = $this->headerFunction) {
             return false;
         }
 
         $func($this);
 
         return true;
-
     }
 
 
-    public function Footer() {
-
-        if(!$func = $this->footerFunction) {
+    public function Footer()
+    {
+        if (!$func = $this->footerFunction) {
             return false;
         }
 
         $func($this);
 
         return true;
-
     }
-
-
 }

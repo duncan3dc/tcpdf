@@ -2,18 +2,18 @@
 
 namespace duncan3dc\Tcpdf;
 
-class Snappy extends \Knp\Snappy\Pdf {
-
+class Snappy extends \Knp\Snappy\Pdf
+{
     protected static $path;
 
 
-    public function __construct($path=false) {
-
-        if(!$path) {
-            if(!$path = static::$path) {
+    public function __construct($path = null)
+    {
+        if (!$path) {
+            if (!$path = static::$path) {
                 # Chcek which version we should use based on the current machine architecture
                 $bin = "wkhtmltopdf-";
-                if(posix_uname()["machine"][0] == "i") {
+                if (posix_uname()["machine"][0] == "i") {
                     $bin .= "i386";
                 } else {
                     $bin .= "amd64";
@@ -31,8 +31,5 @@ class Snappy extends \Knp\Snappy\Pdf {
         }
 
         parent::__construct($path);
-
     }
-
-
 }
