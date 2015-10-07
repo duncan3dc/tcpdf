@@ -6,9 +6,19 @@ use duncan3dc\Helpers\Helper;
 
 class Pdf extends \TCPDF
 {
+    /**
+     * @var callable $headerFunction A function to run each time a new page is started
+     */
     public  $headerFunction;
+
+    /**
+     * @var callable $footerFunction A function to run each time a page ends
+     */
     public  $footerFunction;
 
+    /**
+     * @var int $defaultCellHeight The default height of a cell
+     */
     public  $defaultCellHeight;
 
 
