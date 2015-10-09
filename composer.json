@@ -12,7 +12,6 @@
         "role": "Developer"
     }],
     "require": {
-        "duncan3dc/helpers": ">=1.0.13",
         "h4cc/wkhtmltopdf-amd64": "0.12.*",
         "h4cc/wkhtmltopdf-i386": "0.12.*",
         "knplabs/knp-snappy": "0.2.*",

@@ -2,8 +2,6 @@
 
 namespace duncan3dc\Tcpdf;
 
-use duncan3dc\Helpers\Helper;
-
 class Pdf extends \TCPDF
 {
     /**
@@ -22,9 +20,9 @@ class Pdf extends \TCPDF
     public  $defaultCellHeight;
 
 
-    public function __construct($options = null)
+    public function __construct(array $options = null)
     {
-        $options = Helper::getOptions($options, [
+        $options = $this->getOptions($options, [
             "orientation"   =>  "P",
             "unit"          =>  "mm",
             "format"        =>  "A4",
@@ -63,9 +61,9 @@ class Pdf extends \TCPDF
     }
 
 
-    public function addCell($options)
+    public function addCell(array $options)
     {
-        $o = Helper::getOptions($options, [
+        $o = $this->getOptions($options, [
             "width"     =>  0,
             "height"    =>  $this->defaultCellHeight,
             "content"   =>  "",
@@ -150,5 +148,36 @@ class Pdf extends \TCPDF
         $func($this);
 
         return true;
+    }
+
+
+    /**
+     * Simulate named arguments using associative arrays.
+     *
+     * Basically just merge the two arrays, giving user specified options the preference.
+     * Also ensures that each paramater in the user array is valid and throws an exception if an unknown element is found.
+     *
+     * @param array $userSpecified The array of options passed to the function call
+     * @param array|null $defaults The default options to be used
+     *
+     * @return array
+     */
+    public function getOptions($userSpecified, array $defaults)
+    {
+        $options = $defaults;
+
+        if (!is_array($userSpecified)) {
+            return $options;
+        }
+
+        foreach ($userSpecified as $key => $val) {
+            if (array_key_exists($key, $defaults)) {
+                $options[$key] = $val;
+            } else {
+                throw new \InvalidArgumentException("Unknown parameter: {$key}");
+            }
+        }
+
+        return $options;
     }
 }
