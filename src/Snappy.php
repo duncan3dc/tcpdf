@@ -7,11 +7,11 @@ class Snappy extends \Knp\Snappy\Pdf
     protected static $path;
 
 
-    public function __construct($path = null)
+    public function __construct($path = null, array $options = [])
     {
         if (!$path) {
             if (!$path = static::$path) {
-                # Chcek which version we should use based on the current machine architecture
+                # Check which version we should use based on the current machine architecture
                 $bin = "wkhtmltopdf-";
                 if (posix_uname()["machine"][0] == "i") {
                     $bin .= "i386";
@@ -30,6 +30,6 @@ class Snappy extends \Knp\Snappy\Pdf
             }
         }
 
-        parent::__construct($path);
+        parent::__construct($path, $options);
     }
 }
