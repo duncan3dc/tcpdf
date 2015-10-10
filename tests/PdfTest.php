@@ -1,6 +1,8 @@
 <?php
 
-namespace duncan3dc\Tcpdf;
+namespace duncan3dc\TcpdfTests;
+
+use duncan3dc\Tcpdf\Pdf;
 
 class PdfTest extends \PHPUnit_Framework_TestCase
 {
