@@ -15,7 +15,7 @@
         "h4cc/wkhtmltopdf-amd64": "0.12.*",
         "h4cc/wkhtmltopdf-i386": "0.12.*",
         "knplabs/knp-snappy": "^0.4.2",
-        "tecnick.com/tcpdf": "*",
+        "tecnickcom/tcpdf": "^6.2",
         "php": ">=5.4.0"
     },
     "require-dev": {
